@@ -7,6 +7,18 @@
   width: 1200px;
   margin: auto;
 }
+
+.context {
+  width: 60%;
+  margin: 80px auto;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
+.range {
+  position: relative;
+  left: 50%;
+  margin-left: -70px;
+}
 svg {
   position: relative;
   left: 50%;
