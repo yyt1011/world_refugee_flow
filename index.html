@@ -9,6 +9,16 @@
   <body>
     <div class="container">
       <div class="context">
+        <div class="head">
+          <h1>Where are they from...</h1>
+          <p class="sub">
+            A story into refugees, wars, belligerent countries, torn countries,
+            their neighbouring countries and so on UNHCR's refugee data finder.
+            Data provide a limited scope, but the true stories are happending in
+            their land every day.
+          </p>
+        </div>
+
         <p>
           Every year, there are people fleeing from their homes and seeking
           protection of other countries due to conflicts, wars and persecution.
@@ -17,12 +27,47 @@
           Australia and the Nordic countires. Among these countries, the US has
           been the world's top resettlement country.
         </p>
+        <p>
+          This map shows how many refugee were admitted by UNHCR refugee program
+          under the organization's mandate. The data covers nearly six decades
+          from 1961, the beginning of Vietnam war to 2019.
+        </p>
       </div>
       <div class="range">
-        <input type="range" id="volume" name="volume" min="0" max="59" />
-        <label for="year">Year</label>
+        <label for="year">Choose a year: </label>
+        <input
+          type="range"
+          id="year_range"
+          name="year"
+          min="0"
+          max="58"
+          step="1"
+        />
+        <div class="input_ticks">
+          <p class="tick" style="left: -15px">1961</p>
+          <p class="tick" style="left: 385px">2019</p>
+        </div>
+        <div>
+          <p class="select"></p>
+        </div>
       </div>
-      <div id="chart"></div>
+      <div class="chartwrap">
+        <div id="chart"></div>
+        <div id="tooltip">
+          <p class="tooltip_text"></p>
+        </div>
+      </div>
+      <div class="context">
+        <p>More to come...</p>
+        <p>
+          during this span of 59 years, people fleeing from their home and
+          seperating with their loved ones – for a better future. What caused
+          the run for life? Who should be held responsible for the turning their
+          life up-side-down? Are they taking up their responsibilities to
+          accommodate refugees? What role does neighbouring countries play? Do
+          they see an influx of refugees?
+        </p>
+      </div>
     </div>
 
     <script src="https://d3js.org/d3.v6.js"></script>

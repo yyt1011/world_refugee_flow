@@ -15,11 +15,13 @@ got(url)
       if (tds.length == 8) {
         let dict = {};
         let key = tds[4].querySelector("a>span").innerHTML;
-        let value = tds[5].querySelector("a>span").innerHTML;
-        dict[key] = value;
-        let string = "'" + key + "':'" + value + "',";
+        let number = tds[5].querySelector("a>span").innerHTML;
+        let name = tds[0].querySelectorAll("a")[1].innerHTML;
+        dict[key] = { number: number, name: name };
+        let string =
+          '"' + key + '":{"number": "' + number + '", "name":"' + name + '"},';
 
-        fs.appendFile("data.txt", string, function (err, file) {
+        fs.appendFile("data2.txt", string, function (err, file) {
           if (err) throw err;
           console.log("saved!");
         });

@@ -14,13 +14,80 @@
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
 }
+
+p {
+  margin-bottom: 20px;
+}
+.head {
+  width: 70%;
+  margin: auto;
+  text-align: center;
+}
+
+h1 {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  margin-bottom: 15px;
+}
+.sub {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 60px;
+  font-size: 14px;
+  color: #666666;
+}
+
 .range {
   position: relative;
   left: 50%;
-  margin-left: -70px;
+  margin-left: -200px;
+}
+.range label {
+  display: block;
+  margin-bottom: 15px;
+}
+#year_range {
+  display: block;
+  width: 400px;
+  margin-bottom: 10px;
+}
+.input_ticks {
+  position: relative;
+  font-size: 14px;
+  z-index: 0;
+}
+.range .select {
+  display: inline-block;
+  position: absolute;
+  top: 54px;
+  font-size: 14px;
+  padding: 0 15px;
+  height: 28px;
+  line-height: 28px;
+  background-color: #ffffff;
+  z-index: 5;
+}
+.tick {
+  display: inline-block;
+  position: absolute;
+  font-size: 14px;
 }
 svg {
   position: relative;
   left: 50%;
   margin-left: -500px;
+}
+#chart {
+  position: relative;
+}
+#tooltip {
+  display: none;
+  position: absolute;
+  padding: 10px 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  background-color: #dcf7ec;
+  opacity: 0.8;
+}
+.tooltip_text {
+  width: 200px;
+  margin: 0;
 }

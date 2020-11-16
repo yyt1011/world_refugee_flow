@@ -1,6 +1,6 @@
 import Map from "./comp/drawMap.js";
 import Spikes from "./comp/drawSpikes.js";
-import Range from "./comp/getYear.js";
+import getMax from "./comp/maxSum.js";
 
 //set svg
 const width = 1000;
@@ -23,12 +23,11 @@ Promise.all([
   const refugee = files[0];
   const topo = files[1];
   const ISOdict = files[2];
+  const sumMax = d3.max(getMax(refugee));
 
   // draw map
   const bg_map = new Map(svg, topo);
 
-  // choose a year
-  const year = new Range();
   // draw spikes
-  const spikes = new Spikes(svg, refugee, topo, ISOdict);
+  const spikes = new Spikes(svg, refugee, topo, ISOdict, sumMax);
 });

@@ -1,12 +1,24 @@
 {
   "name": "world_refugee_flow",
   "version": "1.0.0",
-  "description": "",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yyt1011/world_refugee_flow.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yyt1011/world_refugee_flow/issues"
+  },
+  "homepage": "https://github.com/yyt1011/world_refugee_flow#readme",
+  "description": "",
+  "dependencies": {
+    "got": "^11.8.0",
+    "jsdom": "^16.4.0"
+  }
 }
