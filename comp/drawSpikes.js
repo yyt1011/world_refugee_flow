@@ -1,43 +1,20 @@
 export default class Spikes {
-  constructor(svg, refugee, topo, ISOdict, sumMax) {
+  constructor(svg, projection, path, refugee, topo, ISOdict, sumMax) {
     this.svg = svg;
+    this.projection = projection;
+    this.path = path;
     this.refugee = refugee;
     this.topo = topo;
     this.ISOdict = ISOdict;
     this.sumMax = sumMax;
     this.cleanData();
     this.getSpikesData;
-    this.getYear();
     this.init();
   }
   init() {
     this.spikeWrap = this.svg.append("g").attr("class", "spikewrap");
     this.defaultYear = +document.querySelector("input").value + 1961;
     this.getSpikesData(this.defaultYear);
-    console.log("defaultYear", this.defaultYear);
-  }
-
-  getYear() {
-    const that = this;
-    const btn = document.querySelector("input");
-    // set default year label
-    const yearLabel = document.querySelector(".range").querySelector(".select");
-    yearLabel.innerText = +document.querySelector("input").value + 1961;
-    yearLabel.style.left =
-      (400 / 58) * +document.querySelector("input").value - 32 + "px";
-
-    btn.addEventListener("change", function () {
-      const value = btn.value;
-      //change input select value to year corresponding to dataset
-      let yearSelected = +value + 1961;
-      yearLabel.style.display =
-        (yearSelected == "1961") | (yearSelected == "2019")
-          ? "none"
-          : "inline-block";
-      yearLabel.innerText = yearSelected;
-      yearLabel.style.left = (400 / 58) * +value - 32 + "px";
-      that.getSpikesData(yearSelected);
-    });
   }
 
   cleanData() {
@@ -63,9 +40,6 @@ export default class Spikes {
     // work only with refugee number info, get pass year layer
     const _selectedValues = selected[0].values;
 
-    // d3 map functions, used here to locate spikes
-    const projection = d3.geoMercator().translate([500, 500]);
-    const path = d3.geoPath(projection);
     // prepare d3 map data with ISO dict
     const mapData = topojson.feature(this.topo, this.topo.objects.countries)
       .features;
@@ -82,7 +56,7 @@ export default class Spikes {
       // some countries don't have ISO# to match, some countries don't have map data, remove those countries
       d.position =
         id && locationMap.get(id)
-          ? path.centroid(locationMap.get(id)[0])
+          ? this.path.centroid(locationMap.get(id)[0])
           : null;
     });
     this.selectedValues = _selectedValues.filter((d) => d.position);
@@ -92,19 +66,16 @@ export default class Spikes {
 
   drawSpikes() {
     // height of spike
-    const length = d3.scaleLinear([0, this.sumMax], [0, 400]);
+    const length = d3.scaleLinear([0, this.sumMax], [0, 200]);
     // path of each spike
     const spike = (length, width) =>
       `M${-width / 2},0L0,${-length}L${width / 2},0`;
     let spikeDataJoin = this.spikeWrap
       .selectAll("path")
       .data(this.selectedValues);
-    console.log("length of new data", this.selectedValues.length);
 
     // transition
     const t = d3.transition().duration(750);
-
-    console.log("after exit", spikeDataJoin);
 
     // update
     spikeDataJoin
@@ -141,7 +112,6 @@ export default class Spikes {
         let yearSelected =
           document.querySelector(".range").querySelector(".select").innerText ||
           "1961";
-        console.log(yearSelected);
 
         const id_name = this.getAttribute("data-name");
         const v_number = this.getAttribute("data-sum");
