@@ -44,10 +44,30 @@ h1 {
   display: block;
   margin-bottom: 15px;
 }
-#year_range {
+input[type="range"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
   display: block;
   width: 400px;
+  height: 12px;
   margin-bottom: 10px;
+  outline: none;
+  background: linear-gradient(90deg, #cdcdcd, #f0f0f0);
+  border-radius: 5px;
+  box-shadow: 0 0 4px #cdcdcd;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #025e73;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+input[type="range"]:active::-webkit-slider-thumb {
+  background: rgb(2, 128, 156);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
 }
 .input_ticks {
   position: relative;
